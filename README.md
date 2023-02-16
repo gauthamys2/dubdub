@@ -7,6 +7,7 @@ PostgreSQL database running on a docker container to store data.
 - [x] API for CRUD operations using Flask.
 - [x] API endpoint to mark tasks as completed/not completed. 
 - [x] Persist data into a data source - I have used postgres SQL database running on a docker container.
+- [x] Documentation
 - [x] Dockerise the application. 
 
 ## Steps to run
