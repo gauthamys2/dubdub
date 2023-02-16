@@ -21,12 +21,11 @@ def create():
     """
     body of the request is of the format - {"task": "name of task"}
     """
-    
+    data = request.json
     session = Session()
     if not 'task' in data.keys():
         return {'result': "Error, please provide a key with 'task'"}
     try:
-        data = request.json
         new_task = Task(name=data['task'])
         
         session.add(new_task)
@@ -44,12 +43,12 @@ def delete():
     """
     body of the request is of the format - {"task": "name of task"}
     """
-    
+    data = request.json
+
     if not 'task' in data.keys():
         return {'result': "Error, please provide a key with 'task'"}
     session = Session()
 
-    data = request.json
     to_delete = data['task']
     
     session.query(Task).filter(Task.name == to_delete).delete()
@@ -67,19 +66,22 @@ def read():
     return [{'task':task.name, 'completed': task.completed} for task in tasks]
 
 # Update task endpoint
-@app.route('/update')
+@app.route('/update', methods=['PUT'])
 def update():
     """
     body of the request is of the format - {"task": "name of task"}
     """
 
+    data = request.json
+
     if not 'task' in data.keys():
         return {'result': "Error, please provide a key with 'task'"}
     
-    data = request.json
     to_update = data['task']
     session = Session()
     t = session.query(Task).filter(Task.name == to_update).first()
+    if t is None:
+        return {'result': f'task {to_update} does not exist'}
     status = t.completed
     setattr(t, 'completed', not t.completed)
     
