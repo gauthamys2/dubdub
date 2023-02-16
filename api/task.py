@@ -1,3 +1,4 @@
+"""Database Schema File"""
 from sqlalchemy import Column, String, Boolean
 from base import Base
 
