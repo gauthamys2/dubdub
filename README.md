@@ -3,6 +3,7 @@
 ## Stack
 Flask framework to build the required API. <br>
 PostgreSQL database running on a docker container to store data.
+Python version 3.8.10
 
 - [x] API for CRUD operations using Flask.
 - [x] API endpoint to mark tasks as completed/not completed. 
