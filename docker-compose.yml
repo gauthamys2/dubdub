@@ -1,0 +1,23 @@
+services:
+  postgres:
+    hostname: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    image: "postgres"
+    networks:
+      sample:
+        aliases:
+          - postgres
+  api:
+    build: ./api
+    hostname: api
+    ports:
+     - "5050:5000"
+    networks:
+      sample:
+        aliases:
+         - api
+
+networks:
+  sample:
